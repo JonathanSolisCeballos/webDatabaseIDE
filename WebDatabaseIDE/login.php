@@ -1,8 +1,10 @@
 <?php
 if(isset($_POST['submit'])){
     try{
-        $conection = new PDO('mysql:host=127.0.0.1;dbname=cpremier','superboy','maisikuel');
+      if(isset($_POST['username']) && isset($_POST['password'])){
+        $conection = new PDO('mysql:host=127.0.0.1',$_POST['username'],$_POST['password']);
         echo 'conexion hecha bien maestro';
+      }
     }catch (PDOException $error){
         $mensaje=$error->getMessage();
         echo '<h2>'.$mensaje.'</h2>';
@@ -31,12 +33,12 @@ if(isset($_POST['submit'])){
                     <h3 class="login-heading mb-4">Inicia Sesión</h3>
                     <form action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>' method="POST">
                       <div class="form-label-group">
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        <input type="text" id="username" class="form-control" placeholder="Email address" name='username'  required autofocus>
                         <label for="inputEmail">Nombre de usuario</label>
                       </div>
       
                       <div class="form-label-group">
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password"  name='password' required>
                         <label for="inputPassword">Contraseña</label>
                       </div>
       
