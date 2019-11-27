@@ -4,7 +4,7 @@ if(isset($_POST['submit'])){
       if(isset($_POST['username']) && isset($_POST['password'])){
         $conection = new PDO('mysql:host=127.0.0.1',$_POST['username'],$_POST['password']);
         if(isset($_SESSION)){
-        header('Location: home.html');
+        header('Location: home.php');
         }else{
         header('Location: login.php');
         } ;
