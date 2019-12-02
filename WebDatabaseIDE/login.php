@@ -1,13 +1,9 @@
-<?php session_start();
+<?php
 if(isset($_POST['submit'])){
     try{
       if(isset($_POST['username']) && isset($_POST['password'])){
         $conection = new PDO('mysql:host=127.0.0.1',$_POST['username'],$_POST['password']);
-        if(isset($_SESSION)){
-        header('Location: home.html');
-        }else{
-        header('Location: login.php');
-        } ;
+        echo 'conexion hecha bien maestro';
       }
     }catch (PDOException $error){
         $mensaje=$error->getMessage();
@@ -38,7 +34,7 @@ if(isset($_POST['submit'])){
                     <form action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>' method="POST">
                       <div class="form-label-group">
                         <input type="text" id="username" class="form-control" placeholder="Email address" name='username'  required autofocus>
-                        <label for="username">Nombre de usuario</label>
+                        <label for="inputEmail">Nombre de usuario</label>
                       </div>
       
                       <div class="form-label-group">

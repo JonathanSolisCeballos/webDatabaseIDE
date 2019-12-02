@@ -33,17 +33,19 @@
 if(isset($_POST['submit'])){
     try{
       if(isset($_POST['input_query'])){
-        $conection = new PDO('mysql:host=127.0.0.1;dbname=cpremier','superboy','maisikuel');
+        $conection = new PDO('mysql:host=127.0.0.1;dbname=cpremier','root','bach25');
         // echo 'conexion hecha bien maestro';
+        $sql=($_POST['input_query']);
         $statement=$conection->prepare($_POST['input_query']);
         $statement->execute();
         $result=$statement->fetchAll();
         $number_of_rows = $statement->rowCount();
-      
+      /*
         echo "<pre>";
         print_r($result);
         echo "</pre>";
-
+        */
+      
 
         echo "<div class='alert alert-success mx-4' role='alert'> Ok, ". $number_of_rows . " rows affected. </div>";
         $conection = null;
@@ -52,5 +54,58 @@ if(isset($_POST['submit'])){
         $mensaje=$error->getMessage();
         echo '<h2>'.$mensaje.'</h2>';
     }
+if($result>0){
+
+  $conexion = mysqli_connect("127.0.0.1:3306",'root','bach25','cpremier');  /* conexion a BD  */
+
+   if(!$result = mysqli_query($conexion, $sql)) {    /* ejecucion del query  */
+     echo "<h3><center> error en SQL, ¡No regresó resultados o no puedo ejecutar el Query  para formar la tabla!</center></h3>";
+     echo "<center>La sentencia ejecutada fue: ".$sql." </center>";
+     die(); 
+   }
+
+   
+  
+   $rawdata = array();   
+   $i=0;
+   
+  /* recuperacion fila x fila del resulset */
+   while($row = mysqli_fetch_array($result))  
+   {   $rawdata[$i] = $row;  /* almacen en vector de cada registro  */
+       $i++;
+   }
+   
+   $columnas = count($rawdata[0])/2;
+   $filas = count($rawdata);
+   echo "<center><h4>Filas: ".$filas.", Columnas: ".$columnas."  </h4><br>Ejecución del Query bien hecha. <br>".$sql." </center>";
+   echo '<table width="90%" border="1" style="text-align:center; margin-left: 4% ;">';   /* inicio de la tabla  */
+   echo "<th><b>#</b></th>";   /* primer ciclo para imprimir cabeceras   */
+   for($i=1;$i<count($rawdata[0]);$i=$i+2){
+      next($rawdata[0]);
+      echo "<th><b>".key($rawdata[0])."</b></th>";
+      next($rawdata[0]);
+   }
+   for($i=0;$i<$filas;$i++){   /* segundo ciclo para enviar los datos de cada registro */
+      echo "<tr><td>".($i+1)."</td>";   /* inicio del renglon  */
+      for($j=0;$j<$columnas;$j++){
+         echo "<td>".$rawdata[$i][$j]."</td>";  /* columna x columna   matriz[fila i,columna j] */
+      }
+      echo "</tr>\n";   /* fin del renglon  */
+   }
+   echo "</table><HR/>\n\n\n";   /*fin de la tabla   */
+
+   
+  
+
 }
+
+   
+
+
+
+  }
+
+ 
+
+
 ?>
