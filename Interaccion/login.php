@@ -4,7 +4,7 @@ if(isset($_POST['submit'])){
       if(isset($_POST['username']) && isset($_POST['password'])){
         $conection = new PDO('mysql:host=127.0.0.1',$_POST['username'],$_POST['password']);
        
-       header('Location: GITindex.php');
+       header('Location: index.php');
       }
     }catch (PDOException $error){
         $mensaje=$error->getMessage();
