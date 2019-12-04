@@ -30,7 +30,7 @@ if($_SESSION['usuario']){
 		<nav>
 			<ul> 
                 <li class="actual"><a href="./index.php"><i class="fas fa-home"></i> Inicio</a></li>
-                <li class="Interacción"><a href="./index2.php"><i class="fas fa-pencil-alt"></i>Interacción</a></li>
+                <li class="Interacción"><a href="./main.php?bd=information_schema"><i class="fas fa-pencil-alt"></i>Interacción</a></li>
                 <a>Servidor: 127.0.0.1</a>
                 <li class="Interacción"><a href="./destroy.php"><i class="fas fa-pencil-alt"></i>Cerrar Sesión</a></li>
             </ul>

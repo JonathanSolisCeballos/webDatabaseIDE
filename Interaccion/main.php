@@ -1,7 +1,11 @@
-<?php 
-$conexion = mysqli_connect("127.0.0.1:3306",'root','1510','information_schema'); 
+<?php
+session_start();
+if($_SESSION['usuario']){
+  $conexion = mysqli_connect("127.0.0.1:3306",$_SESSION['usuario'],$_SESSION['password'],'information_schema'); 
+}else{
+  header('location:login.php');
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +69,7 @@ $conexion = mysqli_connect("127.0.0.1:3306",'root','1510','information_schema');
                $count++;
                echo 
                "<li>
-               <a href='#pageSubmenu".$count."' aria-expanded='false' class='dropdown-toggle pl-3 color3' data-toggle='collapse' target='_self' onclick='window.location.href = `./index2.php?bd=$db`'>$db</a>
+               <a href='#pageSubmenu".$count."' aria-expanded='false' class='dropdown-toggle pl-3 color3' data-toggle='collapse' target='_self' onclick='window.location.href = `./main.php?bd=$db`'>$db</a>
                <ul class='collapse list-unstyled' id='pageSubmenu".$count."'>
                <a href='#pageSubmenu2".$count."' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle pl-4 color4'>Tablas</a>
                    <ul class='collapse list-unstyled' id='pageSubmenu2".$count."'>
@@ -136,16 +140,20 @@ $conexion = mysqli_connect("127.0.0.1:3306",'root','1510','information_schema');
     </div>
   </form>
   <?php
-  $base= $_GET['bd'];  
+
+   
   
-  if (!isset($base))
-   {echo "<h3>IMPORTANTE:  Se espera recibir 1 parametros via GET. Se debe agregar'?bd=dbname'...</h3>";
-    die(); 
-  };	
+  if (!isset($_GET['bd']))
+   {
+    // echo "<h3>IMPORTANTE:  Se espera recibir 1 parametros via GET. Se debe agregar'?bd=dbname'...</h3>";
+    header('location:main.php?bd=information_schema');
+  }else{
+    $base= $_GET['bd']; 
+  }
 if(isset($_POST['submit'])){
   try{
     if(isset($_POST['input_query'])){
-        $conection = new PDO('mysql:host=127.0.0.1;dbname=cpremier','root','1510');
+        $conection = new PDO('mysql:host=127.0.0.1;dbname=cpremier',$_SESSION['usuario'],$_SESSION['password']);
         // echo 'conexion hecha bien maestro';
         $sql=($_POST['input_query']);
         $statement=$conection->prepare($_POST['input_query']);
