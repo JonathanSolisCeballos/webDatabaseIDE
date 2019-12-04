@@ -1,0 +1,27 @@
+footer {
+  padding: 20px !important;
+  margin-top: 20px !important;
+  color: #fff !important;
+  background-color: #1293d4 !important;
+  text-align: center !important;
+}
+
+.color1 {
+  background: #52bccc !important ;
+}
+.color2 {
+  background: #627c80 !important ;
+}
+.color3 {
+  background: #66ebff !important ;
+}
+.color4 {
+  background: #51e8d3 !important ;
+}
+.color5 {
+  background: #337580 !important ;
+}
+
+.blue {
+  color: #007bff;
+}
