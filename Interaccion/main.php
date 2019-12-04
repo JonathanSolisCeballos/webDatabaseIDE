@@ -22,7 +22,7 @@ $conexion = mysqli_connect("127.0.0.1:3306",'root','1510','information_schema');
     <!-- Our Custom CSS -->
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="./main.css">
   <link rel="stylesheet" href="styles2.css">
   <!-- Font Awesome JS -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"

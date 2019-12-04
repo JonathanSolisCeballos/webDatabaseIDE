@@ -1,15 +1,22 @@
-<?php
-if(isset($_POST['submit'])){
-    try{
-      if(isset($_POST['username']) && isset($_POST['password'])){
-        $conection = new PDO('mysql:host=127.0.0.1',$_POST['username'],$_POST['password']);
-       
-       header('Location: index.php');
+<?php session_start();
+if(isset($_SESSION['usuario']))
+{
+    header('location:home.php');
+}
+else{
+  if(isset($_POST['submit'])){
+      try{
+        if(isset($_POST['username']) && isset($_POST['password'])){
+          $conection = new PDO('mysql:host=127.0.0.1',$_POST['username'],$_POST['password']);
+            header('location:home.php');
+            $_SESSION['usuario']=$_POST['username'];
+            $_SESSION['password']=$_POST['password'];
+        }
+      }catch (PDOException $error){
+          $mensaje=$error->getMessage();
+          echo '<h2>'.$mensaje.'</h2>';
       }
-    }catch (PDOException $error){
-        $mensaje=$error->getMessage();
-        echo '<h2>'.$mensaje.'</h2>';
-    }
+  }
 }
 ?>
 <!DOCTYPE html>
