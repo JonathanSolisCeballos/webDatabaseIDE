@@ -31,7 +31,7 @@ body {
 
 .input ~ .border {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 0;
   width: 0;
   height: 1px;
