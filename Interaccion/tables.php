@@ -27,7 +27,7 @@ if (!isset($tabla))
    echo "<p>Comando SQL para recuperar la estructura de la tabla '<b>".$tabla."</b>'</p>";
    echo "<pre>".$sql."</pre>";
    
-   $conexion = mysqli_connect("127.0.0.1:3306",'root','bach25',$base);  /* conexion a BD  */
+   $conexion = mysqli_connect("127.0.0.1:3306",'root','1510',$base);  /* conexion a BD  */
 
    if(!$result = mysqli_query($conexion, $sql)) {    /* ejecucion del query  */
      echo "<h5>error en SQL, no regreso resultados!</h3>";

@@ -1,5 +1,5 @@
 <?php 
-$conexion = mysqli_connect("127.0.0.1:3306",'root','bach25','information_schema'); 
+$conexion = mysqli_connect("127.0.0.1:3306",'root','1510','information_schema'); 
 ?>
 
 <!DOCTYPE html>
