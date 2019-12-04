@@ -61,6 +61,7 @@ $conexion = mysqli_connect("127.0.0.1:3306",'root','bach25','information_schema'
                 while($database = $consulta1->fetch_assoc()) //Creamos un array asociativo con fetch_assoc 
                {
                $db= $database['TABLE_SCHEMA'];
+        
                $count++;
                echo 
                "<li>
@@ -68,8 +69,11 @@ $conexion = mysqli_connect("127.0.0.1:3306",'root','bach25','information_schema'
                    <ul class='collapse list-unstyled' id='pageSubmenu".$count."'>
                    <a href='#pageSubmenu2".$count."' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle pl-4 color4'>Tablas</a>
                    <ul class='collapse list-unstyled' id='pageSubmenu2".$count."'>
+
                   <li>
+
                   <a class='color5 pl-5'> </a></li>
+                  
                    </ul>
 
                    <a href='#pageSubmenu7".$count."' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle pl-4 color4'>Vistas</a>
